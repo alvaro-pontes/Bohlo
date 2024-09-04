@@ -1,125 +1,75 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="styles.css">
-
-    <title>Calculadora de Formas de Bolo</title>
-
+    <title>Bohlo - Calculadora de Formas de Bolo</title>
 </head>
-
 <body>
-
     <header>
-
-        <h1>Calculadora de Formas de Bolo</h1>
-
+        <h1>Bohlo - Calculadora de Formas de Bolo</h1>
         <p>Calcule a diferença de volume entre a forma de bolo indicada na receita e a forma que você possui em casa.</p>
-
     </header>
 
     <main>
-
         <!-- Seção de Seleção de Formato da Forma na Receita -->
-
         <section id="formato-receita-secao">
-
             <h2>Selecione o tipo de forma de bolo da receita</h2>
-
             <select id="tipo-forma-receita" onchange="atualizarCamposMedidas('receita')">
-
                 <option value="redonda">Redonda</option>
-
                 <option value="redonda-furo">Redonda com Furo no Meio</option>
-
                 <option value="quadrada">Quadrada</option>
-
                 <option value="retangular">Retangular</option>
-
             </select>
-
         </section>
 
         <!-- Seção de Inserção de Medidas da Forma da Receita -->
-
         <section id="medidas-receita">
-
             <h2>Medidas da Forma na Receita</h2>
-
             <div id="campos-receita"></div>
-
         </section>
 
         <!-- Seção de Seleção de Formato da Forma Disponível -->
-
         <section id="formato-disponivel-secao">
-
             <h2>Selecione o tipo de forma de bolo que você possui</h2>
-
             <select id="tipo-forma-disponivel" onchange="atualizarCamposMedidas('disponivel')">
-
                 <option value="redonda">Redonda</option>
-
                 <option value="redonda-furo">Redonda com Furo no Meio</option>
-
                 <option value="quadrada">Quadrada</option>
-
                 <option value="retangular">Retangular</option>
-
             </select>
-
         </section>
 
         <!-- Seção de Inserção de Medidas da Forma Disponível -->
-
         <section id="medidas-disponivel">
-
             <h2>Medidas da Forma que Você Possui</h2>
-
             <div id="campos-disponivel"></div>
-
         </section>
 
         <!-- Botão de Cálculo -->
-
         <button onclick="calcularDiferencaVolume()">Calcular Diferença de Volume</button>
 
         <!-- Seção de Resultado -->
-
         <section id="resultado">
-
             <h2>Resultado</h2>
-
             <p id="volume-receita"></p>
-
             <p id="volume-disponivel"></p>
-
             <p id="proporcao-volumes"></p>
-
         </section>
-
     </main>
 
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
     <script src="script.js"></script>
-
 </body>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      }, function(err) {
-        console.log('ServiceWorker registration failed: ', err);
-      });
-    });
-  }
-</script>
-    
 </html>
