@@ -108,7 +108,8 @@ function calcularDiferencaVolume() {
         if (divisor == 1.0) {
             mensagemResultado = 'Sua forma é perfeita para esta receita.';
         } else {
-            mensagemResultado = `A forma da receita é maior que a sua. Divida os ingredientes da receita por ${divisor}`;
+            mensagemResultado = `A forma da receita é maior que a sua.`;
+		mensagemAjuste = `Divida os ingredientes da receita por ${divisor}`;
         }
     } else {
         mensagemResultado = 'Sua forma é perfeita para esta receita.';
