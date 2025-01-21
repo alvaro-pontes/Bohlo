@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Bohlo - Calculadora de Formas de Bolo</title>
+    <title>Bohlo</title>
 </head>
 <body>
     <header>
-        <h1>Bohlo - Calculadora de Formas de Bolo</h1>
-        <p>Calcule a diferença de volume entre a forma de bolo indicada na receita e a forma que você possui em casa.</p>
+        <h1>Bohlo</h1>
+		<h3>Ajusta a receita à sua forma</h3>
+		<br>
     </header>
 
     <main>
         <!-- Seção de Seleção de Formato da Forma na Receita -->
         <section id="formato-receita-secao">
-            <h2>Selecione o tipo de forma de bolo da receita</h2>
+            <h2>Tipo de forma utilizada na receita</h2>
             <select id="tipo-forma-receita" onchange="atualizarCamposMedidas('receita')">
                 <option value="redonda">Redonda</option>
                 <option value="redonda-furo">Redonda com Furo no Meio</option>
@@ -26,13 +27,13 @@
 
         <!-- Seção de Inserção de Medidas da Forma da Receita -->
         <section id="medidas-receita">
-            <h2>Medidas da Forma na Receita</h2>
+            <h2>Medidas da forma da receita</h2>
             <div id="campos-receita"></div>
         </section>
 
         <!-- Seção de Seleção de Formato da Forma Disponível -->
         <section id="formato-disponivel-secao">
-            <h2>Selecione o tipo de forma de bolo que você possui</h2>
+            <h2>Tipo da sua forma de bolo</h2>
             <select id="tipo-forma-disponivel" onchange="atualizarCamposMedidas('disponivel')">
                 <option value="redonda">Redonda</option>
                 <option value="redonda-furo">Redonda com Furo no Meio</option>
@@ -43,7 +44,7 @@
 
         <!-- Seção de Inserção de Medidas da Forma Disponível -->
         <section id="medidas-disponivel">
-            <h2>Medidas da Forma que Você Possui</h2>
+            <h2>Medidas da sua forma</h2>
             <div id="campos-disponivel"></div>
         </section>
 
@@ -52,9 +53,10 @@
 
         <!-- Seção de Resultado -->
         <section id="resultado">
-            <h2>Resultado</h2>
+            <!--<h2>Resultado</h2>-->
             <p id="volume-receita"></p>
             <p id="volume-disponivel"></p>
+            <p id="resultado-volumes"></p>
             <p id="proporcao-volumes"></p>
         </section>
     </main>
