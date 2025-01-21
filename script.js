@@ -1,4 +1,5 @@
 // Atualiza os campos de entrada de medidas com base no tipo de forma selecionada
+
 function atualizarCamposMedidas(tipo) {
     const tipoForma = document.getElementById(`tipo-forma-${tipo}`).value;
     const camposContainer = document.getElementById(`campos-${tipo}`);
@@ -18,41 +19,42 @@ function atualizarCamposMedidas(tipo) {
 
 function adicionarCamposRedonda(container, prefix) {
     container.innerHTML += `
-        <label for="${prefix}-diametro">Diâmetro (cm):</label>
-        <input type="number" id="${prefix}-diametro">
-        <label for="${prefix}-altura">Altura (cm):</label>
-        <input type="number" id="${prefix}-altura">
+        <label for="${prefix}-diametro">Diâmetro (cm)</label>
+        <input type="number" id="${prefix}-diametro" class="campo-medidas">
+	<br>
+        <label for="${prefix}-altura">Altura (cm)</label>
+        <input type="number" id="${prefix}-altura" class="campo-medidas">
     `;
 }
 
 function adicionarCamposRedondaFuro(container, prefix) {
     container.innerHTML += `
-        <label for="${prefix}-diametro-externo">Diâmetro Externo (cm):</label>
-        <input type="number" id="${prefix}-diametro-externo">
-        <label for="${prefix}-diametro-interno">Diâmetro Interno (cm):</label>
-        <input type="number" id="${prefix}-diametro-interno">
-        <label for="${prefix}-altura">Altura (cm):</label>
-        <input type="number" id="${prefix}-altura">
+        <label for="${prefix}-diametro-externo">Diâmetro Externo (cm)</label>
+        <input type="number" id="${prefix}-diametro-externo" class="campo-medidas">
+        <label for="${prefix}-diametro-interno">Diâmetro Interno (cm)</label>
+        <input type="number" id="${prefix}-diametro-interno" class="campo-medidas">
+        <label for="${prefix}-altura">Altura (cm)</label>
+        <input type="number" id="${prefix}-altura" class="campo-medidas">
     `;
 }
 
 function adicionarCamposQuadrada(container, prefix) {
     container.innerHTML += `
-        <label for="${prefix}-largura">Largura (cm):</label>
-        <input type="number" id="${prefix}-largura">
-        <label for="${prefix}-altura">Altura (cm):</label>
-        <input type="number" id="${prefix}-altura">
+        <label for="${prefix}-largura">Largura (cm)</label>
+        <input type="number" id="${prefix}-largura" class="campo-medidas">
+        <label for="${prefix}-altura">Altura (cm)</label>
+        <input type="number" id="${prefix}-altura" class="campo-medidas">
     `;
 }
 
 function adicionarCamposRetangular(container, prefix) {
     container.innerHTML += `
-        <label for="${prefix}-largura">Largura (cm):</label>
-        <input type="number" id="${prefix}-largura">
-        <label for="${prefix}-comprimento">Comprimento (cm):</label>
-        <input type="number" id="${prefix}-comprimento">
-        <label for="${prefix}-altura">Altura (cm):</label>
-        <input type="number" id="${prefix}-altura">
+        <label for="${prefix}-largura">Largura (cm)</label>
+        <input type="number" id="${prefix}-largura" class="campo-medidas">
+        <label for="${prefix}-comprimento">Comprimento (cm)</label>
+        <input type="number" id="${prefix}-comprimento" class="campo-medidas">
+        <label for="${prefix}-altura">Altura (cm)</label>
+        <input type="number" id="${prefix}-altura" class="campo-medidas">
     `;
 }
 
@@ -87,31 +89,37 @@ function calcularDiferencaVolume() {
     volumeReceita = Math.round(volumeReceita);
     volumeDisponivel = Math.round(volumeDisponivel);
 
-    // Calcular o fator de ajuste da receita
+    // Calcular o resultado dos volumes
+    let mensagemResultado = '';
+	
+	// Calcular o fator de ajuste da receita
     let mensagemAjuste = '';
 
     if (volumeDisponivel > volumeReceita) {
         const multiplicador = (volumeDisponivel / volumeReceita).toFixed(1);
         if (multiplicador == 1.0) {
-            mensagemAjuste = 'Sua forma é perfeita para esta receita.';
+            mensagemResultado = 'Sua forma é perfeita para esta receita.';
         } else {
-            mensagemAjuste = `A forma disponível é maior que a da receita. Multiplique os ingredientes da receita por ${multiplicador}.`;
+            mensagemResultado = `A forma disponível é maior que a da receito.`;
+			mensagemAjuste = `Multiplique os ingredientes da receita por ${multiplicador}.`;
         }
     } else if (volumeDisponivel < volumeReceita) {
         const divisor = (volumeReceita / volumeDisponivel).toFixed(1);
         if (divisor == 1.0) {
-            mensagemAjuste = 'Sua forma é perfeita para esta receita.';
+            mensagemResultado = 'Sua forma é perfeita para esta receita.';
         } else {
-            mensagemAjuste = `A forma da receita é maior que a disponível. Divida os ingredientes da receita por ${divisor}.`;
+            mensagemResultado = `A forma da receita é maior que a disponível.Divida os ingredientes da receita por ${divisor}.`;
         }
     } else {
-        mensagemAjuste = 'Sua forma é perfeita para esta receita.';
+        mensagemResultado = 'Sua forma é perfeita para esta receita.';
     }
 
     // Exibir resultados
     document.getElementById('volume-receita').textContent = `Volume da forma na receita: ${volumeReceita} ml`;
     document.getElementById('volume-disponivel').textContent = `Volume da forma disponível: ${volumeDisponivel} ml`;
-    document.getElementById('proporcao-volumes').textContent = mensagemAjuste;
+    document.getElementById('resultado-volumes').textContent = mensagemResultado;
+	document.getElementById('proporcao-volumes').textContent = mensagemAjuste;
+	document.getElementById('resultado').style.display = 'block';
 }
 
 function calcularVolumeRedonda(prefix) {
@@ -148,3 +156,21 @@ document.addEventListener('DOMContentLoaded', function() {
     atualizarCamposMedidas('receita');
     atualizarCamposMedidas('disponivel');
 });
+
+function adicionarCampo(container, id, label, tipo) {
+    const divGroup = document.createElement('div');
+    divGroup.className = 'form-group';
+
+    const labelElement = document.createElement('label');
+    labelElement.htmlFor = `${tipo}-${id}`;
+    labelElement.textContent = label;
+
+    const input = document.createElement('input');
+    input.type = 'number';
+    input.id = `${tipo}-${id}`;
+    input.name = `${tipo}-${id}`;
+
+    divGroup.appendChild(labelElement);
+    divGroup.appendChild(input);
+    container.appendChild(divGroup);
+}
