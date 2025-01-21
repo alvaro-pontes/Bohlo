@@ -100,7 +100,7 @@ function calcularDiferencaVolume() {
         if (multiplicador == 1.0) {
             mensagemResultado = 'Sua forma é perfeita para esta receita.';
         } else {
-            mensagemResultado = `A forma disponível é maior que a da receito.`;
+            mensagemResultado = `Sua forma é maior que a forma da receita.`;
 			mensagemAjuste = `Multiplique os ingredientes da receita por ${multiplicador}.`;
         }
     } else if (volumeDisponivel < volumeReceita) {
@@ -108,7 +108,7 @@ function calcularDiferencaVolume() {
         if (divisor == 1.0) {
             mensagemResultado = 'Sua forma é perfeita para esta receita.';
         } else {
-            mensagemResultado = `A forma da receita é maior que a disponível.Divida os ingredientes da receita por ${divisor}.`;
+            mensagemResultado = `A forma da receita é maior que a sua forma.Divida os ingredientes da receita por ${divisor}.`;
         }
     } else {
         mensagemResultado = 'Sua forma é perfeita para esta receita.';
